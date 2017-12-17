@@ -93,5 +93,10 @@ alias m="g commit -m"
 alias p="g add --patch"
 alias c="clear"
 
+# kewl stuff
+alias ll="ls -al"
+alias path='echo $PATH | tr -s ":" "\n"'
+alias rf="source ~/.zshrc"
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
