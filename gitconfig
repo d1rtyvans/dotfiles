@@ -1,0 +1,18 @@
+[user]
+	name = Chris Scott
+	email = christo247@gmail.com
+[push]
+	default = simple
+[alias]
+  can = commit --amend --no-edit
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  co = checkout
+  pf = push -f
+
+  unstage = reset HEAD
+
+[core]
+  editor = vim
+
+[help]
+  autocorrect = 1
