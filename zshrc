@@ -85,15 +85,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Git aliases
+# Git butter
 alias g="git"
-alias s="g status"
 alias l="g sla"
 alias m="g commit -m"
 alias p="g add --patch"
-alias c="clear"
+alias s="g status"
+alias v="g commit -v"
 
 # kewl stuff
+alias c="clear"
 alias ll="ls -al"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rf="source ~/.zshrc"
