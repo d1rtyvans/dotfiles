@@ -88,7 +88,7 @@ source $ZSH/oh-my-zsh.sh
 # Git aliases
 alias g="git"
 alias s="g status"
-alias l="g log"
+alias l="g sla"
 alias m="g commit -m"
 alias p="g add --patch"
 alias c="clear"
