@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/d1rtyvans/work/whatify/app/assets/stylesheets/styles'
-let g:netrw_dirhist_2='/home/d1rtyvans/work/whatify/app/helpers'
-let g:netrw_dirhist_3='/home/d1rtyvans/work/whatify/app/assets/stylesheets/styles'
-let g:netrw_dirhist_4='/home/d1rtyvans/dotfiles'
