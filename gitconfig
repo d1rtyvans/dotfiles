@@ -11,6 +11,7 @@
   pd = pull
   pf = push -f
   pu = push origin -u HEAD
+  rc = rebase --continue
 
   unstage = reset HEAD
   uncommit = reset HEAD~1
