@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="amuse"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,6 +85,25 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+    # YAGGY'S #
+    #  SHITS  #
+
+    ###########
+    ###########
+    ###########
+    ###########
+    ###########
+    ###########
+ #################
+  ###############
+   #############
+    ###########
+     #########
+      #######
+       #####
+        ###
+         #
+
 # Git butter
 alias g="git"
 alias l="g sla"
@@ -101,3 +120,7 @@ alias rf="source ~/.zshrc"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+if [ -d "$HOME/.local/bin" ]; then
+  #PATH="$HOME/.local/bin:$PATH"
+fi
