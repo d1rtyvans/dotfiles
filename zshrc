@@ -2,7 +2,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH=/home/d1rtyvans/.oh-my-zsh
 export LANG=en_US.UTF-8
 
-ZSH_THEME="amuse"
+ZSH_THEME="murakami"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
