@@ -1,47 +1,49 @@
 syntax on
 filetype plugin indent on
+colorscheme elflord
 
-set nocompatible
-set expandtab tabstop=2 softtabstop=2 shiftwidth=2
-set ruler
-set history=200
-set nrformats-=octal
-set splitbelow
+set nocompatible                               " Really no point in having this
+set expandtab                                  " Don't bring tabs to the party
+set tabstop=2 softtabstop=2 shiftwidth=2       " If you use four space tabs we can't be friends
+set shiftround                                 " Indent how you're supposed to
+set history=200                                " I guess this makes me a... History buff
+set nrformats-=octal                           " Increment numbers like 08 how one would expect
+set splitbelow                                 " Split panes are weird without this
 set splitright
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
+set incsearch                                  " Go to search as it's being typed in
+set ignorecase                                 " Ignore case when searching
+set smartcase                                  " BUT use case when caps present
+set hlsearch                                   " Highlight search matches
+set nobackup nowritebackup noswapfile          " Damn swap files to hell
+set nojoinspaces                               " Don't add a second space when joining
+set nowrap                                     " For the love of god don't wrap
+set list
+set listchars=tab:»·,trail:·,extends:#,nbsp:·  " Display trailing whitespace
+set wildmenu                                   " Tab moves through possible options
+set wildmode=full
+set cursorline                                 " See where cursor is easily
+set so=10                                      " Add a lil padding when scrolling
+set hid                                        " Hide abandoned buffers
+set lazyredraw                                 " Redraw only when necessary
+set pastetoggle=<F2>                           " No more :setpaste
+
+let mapleader = ","                            " \ is too far
+let g:mapleader = ","
+let &colorcolumn=join(range(81,999),",")       "80 char line limit my g
+
+" Pressing <shift> takes too long
+nmap ; :
+
+" For j/k navigation of wrapped lines
+nmap j gj
+nmap k gk
 
 " turn off 'permanent' search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+nmap <leader><space> :nohlsearch<CR>
 
-set wildmenu
-set wildmode=full
-set cursorline
-set so=10              " Keep cursor centered when scrolling vertically
-set hid                " Hide abandoned buffers
+" Easily edit vimrc
+nmap <silent> <leader>ev :e ~/.vimrc<CR>
 
-" Fuq .swp files
-set nobackup
-set nowritebackup
-set noswapfile
-set nojoinspaces
-
-" Display trailing whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-
-set foldenable
-set foldmethod=indent
-set foldlevelstart=10  " Start w/ folds open
-set foldnestmax=10     " Don't get too fold crazy
-nnoremap <space> za    " `space` opens/closes folds
-
-set lazyredraw         " Redraw only when necessary
-nnoremap j gj          " For vertical navigation of long wrapping annoying strings
-nnoremap k gk
-
-colorscheme elflord
 execute pathogen#infect()
 
 
@@ -66,10 +68,9 @@ if executable('ag')
 
   if !exists(":Ag")
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
+    nmap \ :Ag<SPACE>
   endif
 endif
-
 
 "Ctrl P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
