@@ -2,12 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/d1rtyvans/.oh-my-zsh
+export ZSH=/home/d1rtyvans/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="amuse"
+# ZSH_THEME="murakami"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -104,6 +105,12 @@ source $ZSH/oh-my-zsh.sh
         ###
          #
 
+# kewl stuff
+alias c="clear"
+alias ll="ls -al"
+alias path='echo $PATH | tr -s ":" "\n"'
+alias rf="source ~/.zshrc"
+
 # Git butter
 alias g="git"
 alias l="g sla"
@@ -112,15 +119,7 @@ alias p="g add --patch"
 alias s="g status"
 alias v="g commit -v"
 
-# kewl stuff
-alias c="clear"
-alias ll="ls -al"
-alias path='echo $PATH | tr -s ":" "\n"'
-alias rf="source ~/.zshrc"
-
+# Path
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
-if [ -d "$HOME/.local/bin" ]; then
-  #PATH="$HOME/.local/bin:$PATH"
-fi
+eval "$(rbenv init -)"
