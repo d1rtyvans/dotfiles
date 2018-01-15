@@ -3,12 +3,13 @@ export ZSH=/home/d1rtyvans/.oh-my-zsh
 export LANG=en_US.UTF-8
 
 ZSH_THEME="murakami"
-ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(git bundler rake ruby rails heroku)
 
 source $ZSH/oh-my-zsh.sh
+# SOURCE ALIASES LIKE THIS GUY
+# https://github.com/jesperorb/dotfiles/blob/master/.zshrc
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -16,8 +17,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='mvim'
 fi
-
-# YAG's SETTINGS
 
 # kewl stuff
 alias c="clear"
