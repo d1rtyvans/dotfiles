@@ -1,15 +1,16 @@
 [user]
-  name = Chris Scott
+  name  = Chris Scott
   email = christo247@gmail.com
 [push]
   default = simple
 [alias]
   can = commit --amend --no-edit
-  co = checkout
-  fp = push -f
-  pd = pull
-  pu = push origin -u HEAD
-  rc = rebase --continue
+  co  = checkout
+  fp  = push -f
+  pd  = pull
+  pu  = push origin -u HEAD
+  rc  = rebase --continue
+  rbp = rebase origin/production
   sla = log --oneline --decorate --graph --all -20
 
   unstage = reset HEAD

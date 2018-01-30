@@ -1,8 +1,12 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export ZSH=/home/d1rtyvans/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 export LANG=en_US.UTF-8
 
-ZSH_THEME="murakami"
+# ZSH_THEME="murakami"
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(git bundler rake ruby rails heroku)
