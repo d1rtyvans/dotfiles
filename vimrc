@@ -29,7 +29,7 @@ set pastetoggle=<F2>                           " No more :setpaste
 
 let mapleader = ","                            " \ is too far
 let g:mapleader = ","
-let &colorcolumn=join(range(81,999),",")       "80 char line limit my g
+" let &colorcolumn=join(range(81,999),",")       "80 char line limit my g
 
 " Pressing <shift> takes too long
 nmap ; :
