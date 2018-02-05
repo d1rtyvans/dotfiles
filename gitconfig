@@ -9,6 +9,7 @@
   fp  = push -f
   pd  = pull
   pu  = push origin -u HEAD
+  reb = rebase
   rc  = rebase --continue
   rbp = rebase origin/production
   sla = log --oneline --decorate --graph --all -20

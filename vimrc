@@ -26,6 +26,10 @@ set so=10                                      " Add a lil padding when scrollin
 set hid                                        " Hide abandoned buffers
 set lazyredraw                                 " Redraw only when necessary
 set pastetoggle=<F2>                           " No more :setpaste
+set number                                     " Line numbers r ugly but necessary
+
+" Make line number colors better
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 let mapleader = ","                            " \ is too far
 let g:mapleader = ","
@@ -83,3 +87,24 @@ let g:ctrlp_match_window = 'bottom,order:ttb'
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
+
+" indent guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
+let g:indent_guides_enable_on_vim_startup = 1
+
+
+
+" Functions (should put this in another file) "
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
