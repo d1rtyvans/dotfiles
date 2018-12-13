@@ -1,22 +1,25 @@
 [user]
   name = Chris Scott
-  email = christo247@gmail.com
+  email = chris.scott@ext.airbnb.com
 [push]
   default = simple
 [alias]
   can = commit --amend --no-edit
   co = checkout
+  cp = checkout --patch
   fp = push -f
   pd = pull
   pu = push origin -u HEAD
   rc = rebase --continue
-  sla = log --oneline --decorate --graph --all -20
+  sla = log --oneline --decorate --graph --all -50
+  b = branch --sort=-committerdate
 
   unstage = reset HEAD
   uncommit = reset HEAD~1
 
 [core]
   editor = vim
+  excludesfile = /Users/chris_scott/.gitignore_global
 
 [help]
   autocorrect = 1
