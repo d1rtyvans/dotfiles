@@ -40,12 +40,17 @@ let g:mapleader = ","
 " Color current line number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+" See ur directoriez
+noremap <c-n> :NERDTreeToggle<cr>
+
 " Pressing <shift> takes too long
 nnoremap ; :
 
 " For j/k navigation of wrapped lines
 nnoremap j gj
 nnoremap k gk
+
+nnoremap \ :Ag 
 
 " Move to beginning of text in line more easily)
 nnoremap H ^
@@ -69,13 +74,13 @@ nnoremap <leader>S ^vf):s/\v, /,\r/g<cr>f)=%
 " TODO
 " - This leaves whitespace at end if there are no block args...
 " - Doesn't work for multiple block args
+" - Normalize indent after running this
 nnoremap <leader>{ V:s/\v\{ *(\<bar>\w+\<bar>)? *(.+) +\}/do \1\r  \2\rend/g<cr>
 
 " Replace do end w/ brackets (in ruby)
 nnoremap <leader>} $? do$<cr>v/end<cr>:s/\v do$\n +(.+)\nend/ { \1 }/g<cr>
 
-" { *(\|\w+\|)? *(.+) *}
-"
+" swap single and double quotes, vice versa
 nnoremap ' V:s/"/'/g<cr>
 nnoremap " V:s/'/"/g<cr>
 " -----------------
@@ -97,11 +102,16 @@ imap <c-j> <esc><space> Uea
 " Downcase current word
 imap <c-l> <esc><space> uea
 
+" Copy line to clipboard
+nnoremap yl V"*y
+
 " 4 my ego
 iabbrev @@    chris.scott@ext.airbnb.com
 iabbrev ccopy Copyright 2019 Chris Scott, all rights reserved
 
-iabbrev rqrh require 'rails_helper'
+iabbrev rrh require 'rails_helper'<cr><cr>RSpec.describe
+iabbrev bdp require 'pry'; binding.pry<esc>
+iabbrev fsl # frozen_string_literal: true<cr><bs>
 
 execute pathogen#infect()
 
@@ -112,34 +122,20 @@ map <Leader>s :call RunNearestSpec()<cr>
 map <Leader>l :call RunLastSpec()<cr>
 map <Leader>a :call RunAllSpecs()<cr>
 
-" Silver searcher iz ze best
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
-
-"Ctrl P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:ttb'
 
 " Ctrl P 4 ctagzz
-nnoremap <leader>. :CtrlPTag<cr>
-
+nnoremap <leader>. :Tags<cr>
 
 " Powerline
 set rtp+=/usr/local/lib/python3.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
+
+" FZF
+set rtp+=/usr/local/opt/fzf
+
+nnoremap <c-p> :Files<cr>
+
+" Handle tabs differently in Golang
+au BufNewFile,BufRead *.go set nolist
+autocmd FileType go set tabstop=4 softtabstop=4 shiftwidth=4 expandtab

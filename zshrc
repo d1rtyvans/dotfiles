@@ -44,9 +44,18 @@ else
   export EDITOR='mvim'
 fi
 
+# Use Postgres.app instead of Mac OS defaults
+export PG_DUMP="/Applications/Postgres.app/Contents/MacOS/bin/"
+PATH=$PG_DUMP:$PATH
+
+# Add postgres executables to path
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
 # export PYTHONPATH=/Users/chris_scott/Library/Python/2.7/bin
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
+# Add go executables to pathhhh
+export PATH=$PATH:$(dirname $(go list -f '{{.Target}}' .))
 
 
 # kewl stuff
@@ -55,6 +64,7 @@ alias ll="ls -al"                        # I never actually use this
 alias path='echo $PATH | tr -s ":" "\n"' # human readable path for christ's sake
 alias rf="source ~/.zshrc"               # because yb is lazy
 alias ez="vim ~/.zshrc"                  # LAY Z BOI
+alias time='/usr/bin/time'               # Use time to track performance of stuff
 
 # Git butter
 alias g="git"                            # again, lazy
@@ -68,6 +78,21 @@ alias v="g commit -v"                    # HEH
 # (branches are ordered by commit date DESC)
 function co() {
   g co $(g b | grep -m 1 $1)
+}
+
+# Creates wip commit of all current changes
+function wip() {
+  # todo
+  # - make text arg optional
+  # - `unwip` that undoes last wip commit only (nothing if no wip)
+  g add . && g commit -m "WIP: $1"
+}
+
+# Switch to branch and delete current one
+function db!() {
+  delete_branch=$(g rev-parse --abbrev-ref HEAD)
+  g checkout $1
+  g branch -D $delete_branch
 }
 
 # Open up file(s) with conflict when rebasing
@@ -95,3 +120,6 @@ function reb() {
 }
 
 eval "$(chef shell-init zsh)"
+
+# Use fzf isntead of Ctrl+P in vim
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

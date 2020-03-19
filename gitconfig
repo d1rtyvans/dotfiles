@@ -1,6 +1,6 @@
 [user]
   name = Chris Scott
-  email = chris.scott@ext.airbnb.com
+  email = christo247@gmail.com
 [push]
   default = simple
 [alias]
@@ -13,6 +13,8 @@
   rc = rebase --continue
   sla = log --oneline --decorate --graph --all -50
   b = branch --sort=-committerdate
+  bs = for-each-ref --sort=-committerdate refs/heads/
+  lc = log --name-status HEAD^..HEAD
 
   unstage = reset HEAD
   uncommit = reset HEAD~1
