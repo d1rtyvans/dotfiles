@@ -27,13 +27,19 @@ set hid                                        " Hide abandoned buffers
 set lazyredraw                                 " Redraw only when necessary
 set pastetoggle=<F2>                           " No more :setpaste
 set number                                     " Line numbers r ugly but necessary
+set relativenumber                             " thoughbot made me do it
+set mouse=a                                    " Scroll noob
 
 " Make line number colors better
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+let NERDSpaceDelims=1                          " '# Comment' > '#Comment'
 let mapleader = ","                            " \ is too far
 let g:mapleader = ","
 " let &colorcolumn=join(range(81,999),",")       "80 char line limit my g
+
+" Nerdtree
+map <C-n> :NERDTreeToggle<CR>
 
 " Pressing <shift> takes too long
 nmap ; :
@@ -42,17 +48,30 @@ nmap ; :
 nmap j gj
 nmap k gk
 
+nmap Zz <c-w>_ \| <c-w>\|
+nmap Zo <c-w>=
+
 " turn off 'permanent' search highlight
 nmap <leader><space> :nohlsearch<CR>
 
 " Easily edit vimrc
 nmap <silent> <leader>ev :e ~/.vimrc<CR>
+nmap <silent> <leader>rf :source $MYVIMRC<cr>
 
+" swap single and double quotes, vice versa
+nmap ' V:s/"/'/g<cr>
+nmap " V:s/'/"/g<cr>
+
+" Select a werd w/ space
+nmap <space> viw
+
+iabbrev bdp require 'pry'; binding.pry<esc>
+iabbrev fsl # frozen_string_literal: true<cr><bs>
 execute pathogen#infect()
 
 
 " Vim Rspec
-let g:rspec_command = 'call Send_to_Tmux("be rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -76,12 +95,20 @@ if executable('ag')
   endif
 endif
 
+" Use % for more stuff
+runtime macros/matchit.vim
+
 "Ctrl P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 
+" FZF
+set rtp+=/usr/local/opt/fzf
+
+"Ctrl P 4 ctags
+nmap <leader>. :Tags<cr>
 
 " Powerline
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
@@ -92,19 +119,3 @@ set t_Co=256
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
-
-
-
-" Functions (should put this in another file) "
-function s:MkNonExDir(file, buf)
-    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
-        let dir=fnamemodify(a:file, ':h')
-        if !isdirectory(dir)
-            call mkdir(dir, 'p')
-        endif
-    endif
-endfunction
-augroup BWCCreateDir
-    autocmd!
-    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
-augroup END

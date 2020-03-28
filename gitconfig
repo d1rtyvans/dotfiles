@@ -6,19 +6,24 @@
 [alias]
   can = commit --amend --no-edit
   co  = checkout
+  cp  = checkout --patch
   fp  = push -f
   pd  = pull
   pu  = push origin -u HEAD
   reb = rebase
   rc  = rebase --continue
   rbp = rebase origin/production
-  sla = log --oneline --decorate --graph --all -20
+  sla = log --oneline --decorate --graph --all -50
+  b   = branch --sort=-committerdate
+  bs  = for-each-ref --sort=-committerdate refs/heads/
+  lc  = log --name-status HEAD^..HEA
 
   unstage = reset HEAD
   uncommit = reset HEAD~1
 
 [core]
   editor = vim
+  excludesfile = /Users/d1rtyvans/.gitignore_global
 
 [help]
   autocorrect = 1
