@@ -99,15 +99,15 @@ endif
 runtime macros/matchit.vim
 
 "Ctrl P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:ttb'
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_match_window = 'bottom,order:ttb'
 
-" FZF
+" Use FZF to find files
+" TODO Depends on original fzf package, automate a brew install of this
 set rtp+=/usr/local/opt/fzf
-
-"Ctrl P 4 ctags
+nmap <c-p> :Files<cr>
 nmap <leader>. :Tags<cr>
 
 " Powerline
