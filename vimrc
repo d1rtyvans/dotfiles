@@ -48,8 +48,13 @@ nmap ; :
 nmap j gj
 nmap k gk
 
+" Zoom and resize windows
 nmap Zz <c-w>_ \| <c-w>\|
 nmap Zo <c-w>=
+
+" Move to beginning of text in line more easily)
+nmap <silent> <leader>ev :e ~/.vimrc<CR>
+nnoremap H ^
 
 " turn off 'permanent' search highlight
 nmap <leader><space> :nohlsearch<CR>
