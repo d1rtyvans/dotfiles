@@ -50,11 +50,12 @@ export NVM_DIR="$HOME/.nvm"
 # Quick navigation to repos
 export WCS="$HOME/src/west-coast-skateparks"
 
-# Jet Insight Stuff
+# Mute ruby warnings
 export RUBYOPT='-W0'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$GEM_HOME/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
 # Add docker-sync to path
