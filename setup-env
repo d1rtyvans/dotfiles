@@ -1,0 +1,123 @@
+#!/bin/bash
+
+set -e
+
+case "$1" in
+  --dry-run)
+    dry='y'
+    ;;
+esac
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+pause=0.6
+
+
+echo "${bold}Installing all your sweet sweet dependencies...${normal}"
+sleep $pause
+
+# Brew
+if [ ! -x /usr/local/bin/brew ]; then
+  echo 'Installing brew...'
+  [ $dry ] || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+if [ ! $(brew tap | grep homebrew/cask) ]; then
+  echo 'Tappin dat cask...'
+  [ $dry ] || brew tap homebrew/cask
+fi
+
+
+# Git
+if [ ! -x /usr/local/bin/git ]; then
+  echo 'Installing brew git...'
+  [ $dry ] || brew install git
+fi
+
+
+# Zsh
+if [ ! -x /usr/local/bin/zsh ]; then
+  echo 'Installing zsh...'
+  [ $dry ] || brew install zsh
+else
+  sleep $pause
+  echo
+  read -p "${bold}Wanna upgrade zsh?${normal} [Yn]: " choice
+  if [ "$choice" = 'Y' ]; then
+    sleep $pause
+    echo 'Upgrading zsh...'
+    [ $dry ] || brew upgrade zsh
+  fi
+fi
+
+if [ ! $SHELL = /bin/zsh ]; then
+  echo 'Making sure zsh is your default shell...'
+  [ $dry ] || chsh -s $(which zsh)
+fi
+
+if [ ! -d ~/.oh-my-zsh ]; then
+  echo 'Installing oh mai ZEEESH'
+  [ $dry ] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+
+# Ruby
+if [ ! $(command -v rvm) ] || [ $(which ruby) = /usr/bin/ruby ] ; then
+  echo 'Installing rvm and latest ruby...'
+  sleep $pause
+  if [ -z ${dry+not_set} ]; then
+    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+    # TODO: What if they have rbenv?
+    source ~/.rvm/scripts/rvm
+    rvm reload
+  fi
+fi
+
+
+
+# Node
+if [ ! -r ~/.nvm/nvm.sh ]; then
+  echo 'Installing nvm...'
+  if [ -z ${dry+not_set} ]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    source ~/.nvm/nvm.sh
+  fi
+fi
+
+
+if [ ! $(command -v node) ]; then
+  echo 'Installing node...'
+  if [ -z ${dry+not_set} ]; then
+    nvm install stable
+    nvm alias default $(node -v)
+  fi
+else
+  sleep $pause
+  echo
+  read -p "${bold}Wanna install the latest stable version of node?${normal} [Yn]: " choice
+  if [ "$choice" = 'Y' ]; then
+    sleep $pause
+    echo 'Installing node...'
+    if [ -z ${dry+not_set} ]; then
+      nvm install stable
+      nvm alias default $(node -v)
+    fi
+  fi
+fi
+
+
+echo
+echo "${bold}About to start installing apps...${normal}"
+sleep $pause
+echo "  Stop here if you'd rather do this manually."
+echo '  If you change your mind you can always run `./install-apps`.'
+sleep $pause
+echo
+read -p "${bold}Wanna keep going?${normal} [Yn]: " choice
+
+if [ ! $choice = 'Y' ]; then
+  sleep $pause
+  echo 'Stopping now. If you change your mind, you can run this script again, or just run `./install-apps`.'
+  exit 1
+fi
