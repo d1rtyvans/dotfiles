@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# TODO: Install oh-my-zsh postgres plugggg
+set -e
+
+if [ ! -x /usr/local/bin/brew ]
+then
+  echo 'Installing brew...'
+  # Command taken skrate from https://brew.sh/
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+if [ ! -x /Applications/iTerm.app ]
+then
+  echo 'Installing iTerm...'
+  brew cask install iterm2
+fi
+
+if [ ! -x /usr/local/bin/zsh ]
+then
+  echo 'Installing zsh...'
+  brew install zsh
+else
+  echo 'Upgrading zsh just in case u been slacking...'
+  brew upgrade zsh
+fi
+
+echo 'Making sure zsh is your default shell...'
+chsh -s $(which zsh)
+
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
