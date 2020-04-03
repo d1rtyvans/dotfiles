@@ -16,7 +16,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git bundler rake ruby rails heroku)
+# TODO: Add env example for shopify environment variables
+plugins=(git bundler osx rake ruby rails heroku)
 
 source $ZSH/oh-my-zsh.sh
 # SOURCE ALIASES LIKE THIS GUY
@@ -34,6 +35,7 @@ alias c="clear"
 alias ll="ls -al"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rf="source ~/.zshrc"
+alias spotty='spotify'
 
 # Git butter
 alias g="git"
@@ -42,6 +44,8 @@ alias m="g commit -m"
 alias p="g add --patch"
 alias s="g status"
 alias v="g commit -v"
+
+alias dok="docker-compose -f docker-compose.yml -f docker-compose.mac.yml"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
