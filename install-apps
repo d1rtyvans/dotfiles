@@ -3,9 +3,7 @@
 set -e
 
 # TODO:
-# - Install oh-my-zsh postgres plugggg
 # - How would I source this file from git? I guess I could curl it if it isn't present...?!?!?
-# - POSTMAN
 
 # TODO: Source these
 case "$1" in

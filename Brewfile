@@ -1,11 +1,15 @@
-tap "homebrew/cask"
-tap "heroku/brew"
+# frozen_string_literal: true
 
-brew "zsh"
-brew "tmux"
-brew "heroku"
+tap 'homebrew/cask'
+tap 'heroku/brew'
 
-cask_args appdir: "/Applications"
+brew 'zsh'
+brew 'tmux'
+brew 'git'
+brew 'heroku'
 
-cask "iterm2"
-cask "postgres"
+cask_args appdir: '/Applications'
+
+cask 'iterm2'
+cask 'postgres'
+cask 'postman'
