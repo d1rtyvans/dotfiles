@@ -1,0 +1,71 @@
+#!/bin/bash
+
+set -e
+
+# TODO:
+# - Install oh-my-zsh postgres plugggg
+# - How would I source this file from git? I guess I could curl it if it isn't present...?!?!?
+# - POSTMAN
+
+# TODO: Source these
+case "$1" in
+  --dry-run)
+    dry='y'
+    ;;
+esac
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+pause=0.6
+
+# TODO: Move
+sleep $pause; echo
+read -p "${bold}Would you like to log into heroku cli?${normal} [Yn]: " choice
+if [ "$choice" = 'Y' ]; then
+  sleep $pause
+  [ $dry ] || heroku login -i
+fi
+
+
+# Iterm
+if [ ! -x /Applications/iTerm.app ]; then
+  echo 'Installing iTerm...'
+  [ $dry ] || brew cask install iterm2
+fi
+
+
+# Docker Desktop
+if [ ! -x /usr/local/bin/docker ] && [ ! -x /usr/local/bin/docker-compose ]; then
+  echo 'Installing Docker Desktop...'
+  [ $dry ] || brew cask install docker
+fi
+
+
+# Postgres.app
+if [[ ! "$(which postgres)" =~ Postgres.app ]]; then
+  read -p "${bold}Wanna install Postgres.app?${normal} [Yn]: " choice
+  if [ "$choice" = 'Y' ]; then
+    sleep $pause
+    echo 'Downloading Postgres.app disk image from Github...'
+    if [ -z ${dry+not_set} ]; then
+      latest_pg='https://github.com/PostgresApp/PostgresApp/releases/download/v2.3.3e/Postgres-2.3.3e-12.dmg'
+      tmpfile='/tmp/pg_latest.dmg'
+      curl -\# -L -o $tmpfile $latest_pg
+
+      echo 'Mounting Postgres.app disk image...'
+      output=$(hdiutil mount $tmpfile)
+      volume_dir=$(echo ${output##* } | xargs) # Get last word in string (volume dir) and trim leading whitespace
+
+      echo 'Copying app into /Applications...'
+      cp -R $volume_dir/Postgres.app /Applications
+
+      echo 'Clean up...'
+      hdiutil unmount $volume_dir -quiet
+      rm $tmpfile
+
+      echo 'Adding Postgres.app cli tools to $PATH...'
+      pg_bin='/Applications/Postgres.app/Contents/Versions/latest/bin'
+      sudo mkdir -p /etc/paths.d && echo $pg_bin | sudo tee /etc/paths.d/postgresapp
+    fi
+  fi
+fi
