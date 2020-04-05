@@ -1,0 +1,15 @@
+# kewl stuff
+alias c="clear"
+alias ll="ls -al"
+alias path='echo $PATH | tr -s ":" "\n"'
+alias rf="source ~/.zshrc"
+alias spotty='spotify'
+alias dok="docker-compose -f docker-compose.yml -f docker-compose.mac.yml"
+
+# Git butter
+alias g="git"
+alias l="g sla"
+alias m="g commit -m"
+alias p="g add --patch"
+alias s="g status"
+alias v="g commit -v"

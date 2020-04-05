@@ -1,0 +1,15 @@
+export LANG=en_US.UTF-8
+export EDITOR='vim'
+
+# Zsh
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_THEME="bira-local"
+plugins=(git bundler osx rake ruby rails heroku)
+source $ZSH/oh-my-zsh.sh
+
+# Node
+. "/usr/local/opt/nvm/nvm.sh"
+
+# Ruby
+export RUBYOPT='-W0'
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
