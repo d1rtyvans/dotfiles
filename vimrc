@@ -33,6 +33,9 @@ set mouse=a                                    " Scroll noob
 " Make line number colors better
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+" Don't show end of buffer ~
+highlight EndOfBuffer ctermfg=black ctermbg=black
+
 let NERDSpaceDelims=1                          " '# Comment' > '#Comment'
 let mapleader = ","                            " \ is too far
 let g:mapleader = ","
@@ -83,16 +86,9 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 
-" Silver searcher iz ze best
+" Use Ag over Grep
 if executable('ag')
-  " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 
   if !exists(":Ag")
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
@@ -103,11 +99,6 @@ endif
 " Use % for more stuff
 runtime macros/matchit.vim
 
-"Ctrl P
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_match_window = 'bottom,order:ttb'
 
 " Use FZF to find files
 " TODO Depends on original fzf package, automate a brew install of this
