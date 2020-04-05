@@ -6,9 +6,11 @@
 
 ########## Variables
 
+# TODO: VIM FOLDER IS FUCKED UP DON'T COPY IT!!!!
+
 dir=~/dotfiles        # dotfiles dir
 olddir=~/dotfiles_old # old dotfils backup dir
-files="gitconfig tmux.conf vim vimrc zshrc"   # list of files/folder to symlink in homedir
+files="gitconfig tmux.conf vim vimrc zshrc gemrc"   # list of files/folder to symlink in homedir
 
 ##########
 

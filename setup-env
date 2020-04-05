@@ -2,6 +2,7 @@
 
 set -e
 
+# TODO: Source these
 case "$1" in
   --dry-run)
     dry='y'
