@@ -5,7 +5,9 @@ tap 'heroku/brew'
 
 brew 'zsh'
 brew 'tmux'
+brew 'fzf'
 brew 'git'
+brew 'gnupg'
 brew 'heroku'
 brew 'vim'
 
