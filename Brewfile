@@ -4,11 +4,12 @@ tap 'homebrew/cask'
 tap 'heroku/brew'
 
 brew 'zsh'
-brew 'tmux'
 brew 'fzf'
 brew 'git'
 brew 'gnupg'
 brew 'heroku'
+brew 'the_silver_searcher'
+brew 'tmux'
 brew 'vim'
 
 cask_args appdir: '/Applications'
