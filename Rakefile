@@ -43,7 +43,7 @@ class Dotfile
 
   def link
     puts "linking ~/#{name_with_dot}"
-    `ln -s "$PWD/#{name}" "$HOME/#{name_with_dot}"`
+    `ln -s "$HOME/dotfiles/#{name}" "$HOME/#{name_with_dot}"`
   end
 end
 
