@@ -8,8 +8,9 @@ export ZSH_THEME="bira-local"
 plugins=(git bundler osx rake ruby rails heroku)
 source $ZSH/oh-my-zsh.sh
 
-# Node
-. "/usr/local/opt/nvm/nvm.sh"
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Ruby
 export RUBYOPT='-W0'
