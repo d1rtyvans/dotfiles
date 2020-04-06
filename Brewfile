@@ -10,6 +10,7 @@ brew 'heroku'
 
 cask_args appdir: '/Applications'
 
+cask 'docker'
 cask 'iterm2'
 cask 'postgres'
 cask 'postman'
