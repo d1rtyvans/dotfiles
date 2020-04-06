@@ -7,6 +7,7 @@ brew 'zsh'
 brew 'tmux'
 brew 'git'
 brew 'heroku'
+brew 'vim'
 
 cask_args appdir: '/Applications'
 
