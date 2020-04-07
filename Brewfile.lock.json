@@ -214,6 +214,15 @@
             "appdir": "/Applications"
           }
         }
+      },
+      "spotify": {
+        "version": "latest",
+        "options": {
+          "full_name": "spotify",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
       }
     }
   },
