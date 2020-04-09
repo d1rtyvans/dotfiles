@@ -5,6 +5,7 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias rf="source ~/.zshrc"
 alias spotty='spotify'
 alias dok="docker-compose -f docker-compose.yml -f docker-compose.mac.yml"
+alias rt="bundle exec m"
 
 # Git butter
 alias g="git"
