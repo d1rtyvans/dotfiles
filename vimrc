@@ -27,6 +27,7 @@ set hid                                        " Hide abandoned buffers
 set lazyredraw                                 " Redraw only when necessary
 set pastetoggle=<F2>                           " No more :setpaste
 set number                                     " Line numbers r ugly but necessary
+set ruler                                      " See col number
 set relativenumber                             " thoughbot made me do it
 set mouse=a                                    " Scroll noob
 
